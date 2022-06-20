@@ -1,16 +1,33 @@
+body{
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .row {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
 }
 .box {
     background: rgb(184, 224, 224);
-    width: 250px;
-    height: 250px;
-    border: 2px solid rgb(119, 110, 110);
-    cursor: pointer
+    width: 200px;
+    height: 200px;
+    margin: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5%;
+    font-size: 80px;
+
 }
 .box:hover {
     background-color: rgb(90, 112, 131);
+    
 }
 
 .container{
@@ -19,4 +36,16 @@
 
 .p{
     font-size: 50;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 19%;
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
 }
