@@ -57,7 +57,7 @@ const checkAll = () => {
     [1, 4, 7],
     [2, 5, 8]
   ];
-  for (let i = 0; i < 8; i++) if (game) check(x[i][0], x[i][1], x[i][2], x[i][3], x[i][4], x[i][5], x[i][6], x[i][7]);
+  for (let i = 0; i < 7; i++) if (game) check(x[i][0], x[i][1], x[i][2], x[i][3], x[i][4], x[i][5], x[i][6], x[i][7])
 };
 
 for (let i = 0; i < 9; i++) boxes[i].addEventListener("click", onClick);
