@@ -1,151 +1,61 @@
 const boxes = document.querySelectorAll(".box");
-const reset = document.querySelector('button');
-reset.style.visibility='hidden';
-let bek = 0;
-let game = true;
+const reset = document.querySelector("button");
+const audio = document.getElementById("audio");
+let bek;
+let counter;
+let game;
+
+const newGame = () => {
+  bek = "❌";
+  counter = 0;
+  game = true;
+  reset.style.visibility = "hidden";
+  for (let i = 0; i < 9; i++) {
+    boxes[i].style.background = "rgb(184, 224, 224)";
+    boxes[i].innerHTML = "";
+  }
+};
 
 const onClick = (event) => {
-    clickTS();
-    check();
-    let box = event.target;
-        if (bek % 2 == 0) {
-        if (box.innerHTML  == '❌' || box.innerHTML == '⭕'){
-            return;}
-            else{
-                box.innerHTML = "❌"
-                bek +=1;}
-        
-        } else{
-            if (box.innerHTML == '❌' || box.innerHTML == '⭕'){
-                return;
-            }
-            else{
-                box.innerHTML = '⭕'
-                bek += 1;
-            };
-        }  
-        check();
-    }
+  if (game == false) return;
+  let box = event.target;
+  if (box.innerHTML != "") return;
+  box.innerHTML = bek;
+  audio.play();
+  bek = bek == "❌" ? "⭕" : "❌";
+  checkAll();
+  counter++;
+  if (counter == 9) {
+    game = false;
+    reset.style.visibility = "visible";
+  }
+};
 
+const check = (a, b, c) => {
+  if (
+    boxes[a].innerHTML != "" &&
+    boxes[a].innerHTML == boxes[b].innerHTML &&
+    boxes[a].innerHTML == boxes[c].innerHTML
+  ) {
+    let ezz = boxes[a].innerHTML == "❌" ? "grey" : "rgb(3, 29, 51)";
+    boxes[a].style.background = ezz;
+    boxes[b].style.background = ezz;
+    boxes[c].style.background = ezz;
+    game = false;
+    reset.style.visibility = "visible";
+  }
+};
 
+const checkAll = () => {
+  const x = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+  ];
+  for (let i = 0; i < 3; i++) if (game) check(x[i][0], x[i][1], x[i][2]);
+};
 
-const clickTS = () => {
-    console.log("play")
-    audio = document.getElementById('audio')
-    audio.play()
-}
+for (let i = 0; i < 9; i++) boxes[i].addEventListener("click", onClick);
 
-
-const check=()=>{
-    if (boxes[0].innerHTML != "" && boxes[0].innerHTML == boxes[1].innerHTML && boxes[0].innerHTML == boxes[2].innerHTML){
-        let ezz = boxes[0].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[0].style.background = ezz;
-        boxes[1].style.background = ezz;
-        boxes[2].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return}
-        
-        else if (boxes[3].innerHTML != "" && boxes[3].innerHTML == boxes[4].innerHTML && boxes[3].innerHTML == boxes[5].innerHTML){
-        let ezz = boxes[3].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[3].style.background = ezz;
-        boxes[4].style.background = ezz;
-        boxes[5].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return}
-    
-    
-        else if (boxes[6].innerHTML != "" && boxes[6].innerHTML == boxes[7].innerHTML && boxes[6].innerHTML == boxes[8].innerHTML){
-        let ezz = boxes[6].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[6].style.background = ezz;
-        boxes[7].style.background = ezz;
-        boxes[8].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return}
-    
-    
-        else if (boxes[0].innerHTML != "" && boxes[0].innerHTML == boxes[4].innerHTML && boxes[0].innerHTML == boxes[8].innerHTML){
-        let ezz = boxes[0].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[0].style.background = ezz;
-        boxes[4].style.background = ezz;
-        boxes[8].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return}
-    
-    
-        else if (boxes[2].innerHTML != "" && boxes[2].innerHTML == boxes[4].innerHTML && boxes[2].innerHTML == boxes[6].innerHTML){
-        let ezz = boxes[2].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[2].style.background = ezz;
-        boxes[4].style.background = ezz;
-        boxes[6].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return}
-    
-    
-        else if (boxes[0].innerHTML != "" && boxes[0].innerHTML == boxes[3].innerHTML && boxes[0].innerHTML == boxes[6].innerHTML){
-        let ezz = boxes[0].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[0].style.background = ezz;
-        boxes[3].style.background = ezz;
-        boxes[6].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return}
-    
-    
-        else if (boxes[1].innerHTML != "" && boxes[1].innerHTML == boxes[4].innerHTML && boxes[1].innerHTML == boxes[7].innerHTML){
-        let ezz = boxes[1].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[4].style.background = ezz;
-        boxes[1].style.background = ezz;
-        boxes[7].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return}
-    
-    
-        else if (boxes[2].innerHTML != "" && boxes[2].innerHTML == boxes[5].innerHTML && boxes[2].innerHTML == boxes[8].innerHTML){
-        let ezz = boxes[2].innerHTML == "❌"  ? "grey" : "rgb(3, 29, 51)";
-        boxes[8].style.background = ezz;
-        boxes[5].style.background = ezz;
-        boxes[2].style.background = ezz;
-        game = false;
-        if (game==false){
-            reset.style.visibility = 'visible';} 
-        if(reset.style.visibility == 'visible' && reset.clicked == true){
-            boxes.innerHTML = '';}
-        return} 
-    }
-
-
-
-
- 
-
-for (let i = 0; i < 9; i++) {
-    boxes[i].addEventListener("click", onClick)
-}
-
+reset.addEventListener("click", newGame);
+newGame();
